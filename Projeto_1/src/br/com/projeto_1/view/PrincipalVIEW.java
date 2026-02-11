@@ -4,6 +4,8 @@
  */
 package br.com.projeto_1.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Aluno
@@ -32,10 +34,6 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         menuCadastro = new javax.swing.JMenu();
         itemMenuCliente = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,6 +42,11 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         itemMenuCliente.setMnemonic('o');
         itemMenuCliente.setText("Cliente");
+        itemMenuCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemMenuClienteMouseClicked(evt);
+            }
+        });
         itemMenuCliente.addActionListener(this::itemMenuClienteActionPerformed);
         menuCadastro.add(itemMenuCliente);
 
@@ -51,23 +54,12 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         menuSair.setMnemonic('e');
         menuSair.setText("Sair");
-
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        menuSair.add(cutMenuItem);
-
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        menuSair.add(copyMenuItem);
-
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        menuSair.add(pasteMenuItem);
-
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        menuSair.add(deleteMenuItem);
-
+        menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSairMouseClicked(evt);
+            }
+        });
+        menuSair.addActionListener(this::menuSairActionPerformed);
         menuBar.add(menuSair);
 
         setJMenuBar(menuBar);
@@ -87,12 +79,33 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuClienteActionPerformed
-        // TODO add your handling code here:
+     abreClienteVIEW();
     }//GEN-LAST:event_itemMenuClienteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuSairActionPerformed
+
+    private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
+      sair();
+    }//GEN-LAST:event_menuSairMouseClicked
+
+    private void itemMenuClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemMenuClienteMouseClicked
+   
+    }//GEN-LAST:event_itemMenuClienteMouseClicked
+
+    private void sair(){
+        Object[] options = {"Sair", "Cancelar"};
+        if(JOptionPane.showOptionDialog(null, "Deseja Sair do Sistema", "Informação", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]) == 0){
+           System.exit(0);
+        }
+    }
+    private void abreClienteVIEW(){
+        ClienteVIEW clienteVIEW = new ClienteVIEW();
+        this.desktopPane.add(clienteVIEW);
+        clienteVIEW.setVisible(true);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -126,15 +139,11 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem itemMenuCliente;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuSair;
-    private javax.swing.JMenuItem pasteMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }
