@@ -26,5 +26,17 @@ public class ClienteCTR {
         }
         
     }
+    public ResultSet consultarCliente(ClienteDTO clienteDTO, int opcao){
+        ResultSet rs = null;
+        rs = clienteDAO.consultarCliente(clienteDTO, opcao);
+
+        return rs;
+        
+        
     
+    }
+    
+    public void CloseDB(){
+        ConexaoDAO.CloseDB();
+    }
 }
