@@ -30,10 +30,31 @@ public class ClienteCTR {
         ResultSet rs = null;
         rs = clienteDAO.consultarCliente(clienteDTO, opcao);
 
-        return rs;
-        
-        
-    
+        return rs;       
+    }
+    public String alterarCliente(ClienteDTO clienteDTO){
+        try{
+            if(clienteDAO.alterarCliente(clienteDTO)){
+                return "Cliente Alterado com Sucesso!!!";
+            } else{
+                return "Cliente NÃO Alterado!!!";
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "Cliente NÃO Alterado!!!";
+        }
+    }
+    public String excluirCliente(ClienteDTO clienteDTO){
+        try{
+            if(clienteDAO.excluirCliente(clienteDTO)){
+                return "Cliente Excluido com Sucesso!!!";
+            } else{
+                return "Cliente NÃO Excluido!!!";
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "Cliente NÃO Excluido!!!";
+        }
     }
     
     public void CloseDB(){
