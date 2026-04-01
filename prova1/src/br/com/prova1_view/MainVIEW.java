@@ -53,24 +53,29 @@ public class MainVIEW extends javax.swing.JFrame {
         menuCadastro.setText("Cadastro");
 
         itemMenuPessoa.setMnemonic('o');
-        itemMenuPessoa.setText("Pessoa");
-        itemMenuPessoa.addActionListener(this::itemMenuPessoaActionPerformed);
-        menuCadastro.add(itemMenuPessoa);
+    itemMenuPessoa.setText("Pessoa");
+    // CORREÇÃO AQUI: Adicionado o listener que estava vazio
+    itemMenuPessoa.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            itemMenuPessoaActionPerformed(evt);
+        }
+    });
+    menuCadastro.add(itemMenuPessoa);
 
-        menuBar.add(menuCadastro);
+    menuBar.add(menuCadastro);
 
-        menuRelatorio.setText("Relatorio");
-        menuBar.add(menuRelatorio);
+    menuRelatorio.setText("Relatorio");
+    menuBar.add(menuRelatorio);
 
-        menuSair.setMnemonic('e');
-        menuSair.setText("Sair");
-        menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuSairMouseClicked(evt);
-            }
-        });
-        menuBar.add(menuSair);
-
+    menuSair.setMnemonic('e');
+    menuSair.setText("Sair");
+    // CORREÇÃO AQUI: Adicionado o listener que estava vazio
+    menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            menuSairMouseClicked(evt);
+        }
+    });
+    menuBar.add(menuSair);
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
