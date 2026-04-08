@@ -3,29 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package br.com.projeto_2.dao;
-
+ 
 import java.sql.*;
+import br.com.projeto_2.dto.ProdutoDTO;
 import br.com.projeto_2.dto.FornecedorDTO;
-import java.text.SimpleDateFormat;
 
-public class FornecedorDAO {
-
-    public FornecedorDAO(){
-    }
-    SimpleDateFormat data_format = new SimpleDateFormat("dd/mm/yyyy");
+public class ProdutoDAO {
+    
     private ResultSet rs = null;
     private Statement stmt = null;
     
-    public boolean inserirFornecedor(FornecedorDTO fornecedorDTO){
+    public boolean inserirProduto(ProdutoDTO produtoDTO, FornecedorDTO fornecedorDTO){
            try{
                ConexaoDAO.ConectDB();
                stmt = ConexaoDAO.con.createStatement();
                
-               String comando = "Insert into fornecedor (nome_for, cnpj_for, tel_for, data_cad_for) values ( "
-                         + "'" + fornecedorDTO.getNome_for() + "', "
-                         + "'" + fornecedorDTO.getCnpj_for()+ "', "
-                         + "'" + fornecedorDTO.getTel_for()+ "', "
-                         + "to_date('" + data_format.format(fornecedorDTO.getData_cad_for())+"','dd/mm/yyyy')) ";
+               String comando = "Insert into produto (nome_prod, cnpj_prod, cod_bar_prod, "
+                       +"p_custo_prod, p_venda_prod, id_for) values ( "
+                         + "'" + produtoDTO.getNome_prod() + "', "
+                         + "'" + produtoDTO.getDesc_prod()+ "', "
+                         + "'" + produtoDTO.getCod_bar_prod()+ "', "
+                         + produtoDTO.getP_custo_prod()+ ", "
+                         + produtoDTO.getP_venda_prod()+ ","
+                         + fornecedorDTO.getId_for()+")";
                
                stmt.execute(comando.toUpperCase());
                
@@ -41,18 +41,20 @@ public class FornecedorDAO {
            finally{
             ConexaoDAO.CloseDB();
            }
-       }
-    
-    public boolean alterarFornecedor(FornecedorDTO fornecedorDTO){
+    }
+    public boolean alterarProduto(ProdutoDTO produtoDTO, FornecedorDTO fornecedorDTO){
              try{
                  ConexaoDAO.ConectDB();
                  stmt = ConexaoDAO.con.createStatement();
-                 String comando = "Update fornecedor set " 
-                         + "nome_for = '" + fornecedorDTO.getNome_for()+ "', "
-                         + "cnpj_for = '" + fornecedorDTO.getCnpj_for()+ "', "
-                         + "tel_for = " + fornecedorDTO.getTel_for() + ", "
-                         + "data_cad_for = to_date('" + data_format.format(fornecedorDTO.getData_cad_for()) + "','dd/mm/yyyy') " 
-                         + "where id_for = " + fornecedorDTO.getId_for();
+                 String comando = "Update produto set " 
+                         + "nome_prod = '" + produtoDTO.getNome_prod()+ "', "
+                         + "desc_prod = '" + produtoDTO.getDesc_prod()+ "', "
+                         + "cod_bar_prod = '" + produtoDTO.getCod_bar_prod()+ "', "
+                         + "p_custo_prod = " + produtoDTO.getP_custo_prod() +", "
+                         + "p_venda_prod = " + produtoDTO.getP_venda_prod() +", "
+                         + "id_for = " + fornecedorDTO.getId_for()+ " "
+                         + "where id_prod = " + produtoDTO.getId_prod();
+                         
                  
                  stmt.execute(comando.toUpperCase());
                  
@@ -67,14 +69,15 @@ public class FornecedorDAO {
              finally{
                  ConexaoDAO.CloseDB();
              }
-         }
     
-     public boolean excluirFornecedor(FornecedorDTO fornecedorDTO){
+    }
+    
+    public boolean excluirProduto(ProdutoDTO produtoDTO){
             try{
                 ConexaoDAO.ConectDB();
                 stmt = ConexaoDAO.con.createStatement();
-                String comando = "Delete from fornecedor where id_for = "
-                        + fornecedorDTO.getId_for();
+                String comando = "Delete from produto where id_prod = "
+                        + produtoDTO.getId_prod();
                 
                 stmt.execute(comando);
                 
@@ -85,10 +88,11 @@ public class FornecedorDAO {
                 return false;
             }finally{
                 ConexaoDAO.CloseDB();
+         
             }
-        }
-     
-     public ResultSet consultarFornecedor(FornecedorDTO fornecedorDTO, int opcao) {
+    }
+    
+    public ResultSet consultarProduto(ProdutoDTO produtoDTO, int opcao) {
             try{
 
                 ConexaoDAO.ConectDB();
@@ -97,22 +101,17 @@ public class FornecedorDAO {
 
                 switch(opcao){
                     case 1:
-                        comando = "Select f.* "+
-                          "from fornecedor f "+
-                          "where nome_for like '" + fornecedorDTO.getNome_for()+ "%' "+
-                          "order by f.nome_for";
+                        comando = "Select p.* "+
+                          "from produto p "+
+                          "where nome_prod ilike '" + produtoDTO.getNome_prod()+ "%' "+
+                          "order by p.nome_prod";
                     break;
 
                     case 2:
-                        comando = "Select f.nome_for, f.cnpj_for, f.tel_for, "+
-                          "to_char(f.data_cad_for, 'dd/mm/yyyy') as data_cad_for "+
-                          "from fornecedor f "+
-                          "where f.id_for = " + fornecedorDTO.getId_for();
-                    break;
-
-                    case 3:
-                        comando = "Select f.id_for, f.nome_for "+
-                          "from fornecedor f ";
+                        comando = "Select p. *, f.nome_for, f.id_for " +
+                                  "from produto p, fornecedor f " +
+                                  "where p.id_for and " +
+                                  "p.id_prod = " + produtoDTO.getId_prod(); 
                     break;
             }
 
@@ -125,4 +124,6 @@ public class FornecedorDAO {
             }
         }
     
-}
+    
+    
+}            

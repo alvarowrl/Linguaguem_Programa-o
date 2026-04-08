@@ -19,6 +19,13 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         initComponents();
     }
 
+   
+    private void abreFornecedorVIEW(){
+        FornecedorVIEW fornecedorVIEW = new FornecedorVIEW();
+        this.desktopPane.add(fornecedorVIEW);
+        fornecedorVIEW.setVisible(true);
+        fornecedorVIEW.setPosicao();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,6 +49,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         itemMenuFornecedor.setMnemonic('o');
         itemMenuFornecedor.setText("Fornecedor");
+        itemMenuFornecedor.addActionListener(this::itemMenuFornecedorActionPerformed);
         menuCadastro.add(itemMenuFornecedor);
 
         itemMenuProduto.setMnemonic('x');
@@ -88,6 +96,10 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
        sair();
     }//GEN-LAST:event_menuSairMouseClicked
+
+    private void itemMenuFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuFornecedorActionPerformed
+        abreFornecedorVIEW();
+    }//GEN-LAST:event_itemMenuFornecedorActionPerformed
 
     /**
      * @param args the command line arguments
