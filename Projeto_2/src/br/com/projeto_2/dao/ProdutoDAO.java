@@ -18,7 +18,7 @@ public class ProdutoDAO {
                ConexaoDAO.ConectDB();
                stmt = ConexaoDAO.con.createStatement();
                
-               String comando = "Insert into produto (nome_prod, cnpj_prod, cod_bar_prod, "
+               String comando = "Insert into produto (nome_prod,desc_prod, cod_bar_prod, "
                        +"p_custo_prod, p_venda_prod, id_for) values ( "
                          + "'" + produtoDTO.getNome_prod() + "', "
                          + "'" + produtoDTO.getDesc_prod()+ "', "
@@ -103,14 +103,14 @@ public class ProdutoDAO {
                     case 1:
                         comando = "Select p.* "+
                           "from produto p "+
-                          "where nome_prod ilike '" + produtoDTO.getNome_prod()+ "%' "+
+                          "where p.nome_prod ilike '" + produtoDTO.getNome_prod()+ "%' "+
                           "order by p.nome_prod";
                     break;
 
                     case 2:
                         comando = "Select p. *, f.nome_for, f.id_for " +
                                   "from produto p, fornecedor f " +
-                                  "where p.id_for and " +
+                                  "where p.id_for = f.id_for and " +
                                   "p.id_prod = " + produtoDTO.getId_prod(); 
                     break;
             }

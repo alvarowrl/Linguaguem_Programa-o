@@ -6,10 +6,9 @@ package br.com.projeto_2.view;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Aluno
- */
+import java.awt.Image;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 public class PrincipalVIEW extends javax.swing.JFrame {
 
     /**
@@ -17,6 +16,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
      */
     public PrincipalVIEW() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
    
@@ -25,6 +25,12 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         this.desktopPane.add(fornecedorVIEW);
         fornecedorVIEW.setVisible(true);
         fornecedorVIEW.setPosicao();
+    }
+    private void abreProdutoVIEW(){
+        ProdutoVIEW produtoVIEW = new ProdutoVIEW();
+        this.desktopPane.add(produtoVIEW);
+        produtoVIEW.setVisible(true);
+        produtoVIEW.setPosicao();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +41,13 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktopPane = new javax.swing.JDesktopPane();
+        ImageIcon imageicon = new ImageIcon(getClass().getResource("imagens/tela_inicial.jpg"));
+        Image image = imageicon.getImage();
+        desktopPane = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics graphics){
+                graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         menuBar = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         itemMenuFornecedor = new javax.swing.JMenuItem();
@@ -86,7 +98,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuProdutoActionPerformed
-        System.exit(0);
+        abreProdutoVIEW();
     }//GEN-LAST:event_itemMenuProdutoActionPerformed
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
