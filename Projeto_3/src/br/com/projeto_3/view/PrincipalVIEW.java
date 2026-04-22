@@ -17,6 +17,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
      */
     public PrincipalVIEW() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
   private void sair(){
@@ -24,6 +25,27 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         if(JOptionPane.showOptionDialog(null, "Deseja Sair do Sistema", "Informação", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]) == 0){
            System.exit(0);
         }
+    }
+  
+  private void abreClienteVIEW(){
+        ClienteVIEW clienteVIEW = new ClienteVIEW();
+        this.desktopPane.add(clienteVIEW);
+        clienteVIEW.setVisible(true);
+        clienteVIEW.setPosicao();
+    }
+  
+  private void abreFornecedorVIEW(){
+        FornecedorVIEW fornecedorVIEW = new FornecedorVIEW();
+        this.desktopPane.add(fornecedorVIEW);
+        fornecedorVIEW.setVisible(true);
+        fornecedorVIEW.setPosicao();
+    }
+  
+  private void abreProdutoVIEW(){
+        ProdutoVIEW produtoVIEW = new ProdutoVIEW();
+        this.desktopPane.add(produtoVIEW);
+        produtoVIEW.setVisible(true);
+        produtoVIEW.setPosicao();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,6 +73,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         itemMenuFornecedor.setMnemonic('s');
         itemMenuFornecedor.setText("Fornecedor");
+        itemMenuFornecedor.addActionListener(this::itemMenuFornecedorActionPerformed);
         menuCadastro.add(itemMenuFornecedor);
 
         itemMenuProduto.setMnemonic('a');
@@ -81,30 +104,32 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1515, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuClienteActionPerformed
-        // TODO add your handling code here:
+    abreClienteVIEW();
     }//GEN-LAST:event_itemMenuClienteActionPerformed
 
     private void itemMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuProdutoActionPerformed
-        // TODO add your handling code here:
+    abreProdutoVIEW();        // TODO add your handling code here:
     }//GEN-LAST:event_itemMenuProdutoActionPerformed
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
     sair();        // TODO add your handling code here:
     }//GEN-LAST:event_menuSairActionPerformed
+
+    private void itemMenuFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuFornecedorActionPerformed
+        abreFornecedorVIEW();
+    }//GEN-LAST:event_itemMenuFornecedorActionPerformed
 
     /**
      * @param args the command line arguments
