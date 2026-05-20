@@ -47,6 +47,12 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         produtoVIEW.setVisible(true);
         produtoVIEW.setPosicao();
     }
+  private void abreVendaVIEW(){
+        VendaVIEW vendaVIEW = new VendaVIEW();
+        this.desktopPane.add(vendaVIEW);
+        vendaVIEW.setVisible(true);
+        vendaVIEW.setPosicao();
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -68,17 +74,17 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         itemMenuCliente.setMnemonic('o');
         itemMenuCliente.setText("Cliente");
-        itemMenuCliente.addActionListener(this::itemMenuClienteActionPerformed);
+        itemMenuCliente.addActionListener();
         menuCadastro.add(itemMenuCliente);
 
         itemMenuFornecedor.setMnemonic('s');
         itemMenuFornecedor.setText("Fornecedor");
-        itemMenuFornecedor.addActionListener(this::itemMenuFornecedorActionPerformed);
+        itemMenuFornecedor.addActionListener();
         menuCadastro.add(itemMenuFornecedor);
 
         itemMenuProduto.setMnemonic('a');
         itemMenuProduto.setText("Produto");
-        itemMenuProduto.addActionListener(this::itemMenuProdutoActionPerformed);
+        itemMenuProduto.addActionListener();
         menuCadastro.add(itemMenuProduto);
 
         menuBar.add(menuCadastro);
@@ -88,13 +94,14 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         itemMenuVenda.setMnemonic('t');
         itemMenuVenda.setText("Realizar Venda");
+        itemMenuVenda.addActionListener();
         menuVenda.add(itemMenuVenda);
 
         menuBar.add(menuVenda);
 
         menuSair.setMnemonic('h');
         menuSair.setText("Sair");
-        menuSair.addActionListener(this::menuSairActionPerformed);
+        menuSair.addActionListener();
         menuBar.add(menuSair);
 
         setJMenuBar(menuBar);
@@ -130,6 +137,10 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     private void itemMenuFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuFornecedorActionPerformed
         abreFornecedorVIEW();
     }//GEN-LAST:event_itemMenuFornecedorActionPerformed
+
+    private void itemMenuVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuVendaActionPerformed
+        abreVendaView();
+    }//GEN-LAST:event_itemMenuVendaActionPerformed
 
     /**
      * @param args the command line arguments
