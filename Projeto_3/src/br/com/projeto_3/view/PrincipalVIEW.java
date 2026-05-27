@@ -63,6 +63,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         itemMenuCliente = new javax.swing.JMenuItem();
         itemMenuFornecedor = new javax.swing.JMenuItem();
         itemMenuProduto = new javax.swing.JMenuItem();
+        itemMenuFuncionario = new javax.swing.JMenuItem();
         menuVenda = new javax.swing.JMenu();
         itemMenuVenda = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
@@ -74,18 +75,27 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         itemMenuCliente.setMnemonic('o');
         itemMenuCliente.setText("Cliente");
-        itemMenuCliente.addActionListener();
+        itemMenuCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemMenuClienteMouseClicked(evt);
+            }
+        });
+        itemMenuCliente.addActionListener(this::itemMenuClienteActionPerformed);
         menuCadastro.add(itemMenuCliente);
 
         itemMenuFornecedor.setMnemonic('s');
         itemMenuFornecedor.setText("Fornecedor");
-        itemMenuFornecedor.addActionListener();
+        itemMenuFornecedor.addActionListener(this::itemMenuFornecedorActionPerformed);
         menuCadastro.add(itemMenuFornecedor);
 
         itemMenuProduto.setMnemonic('a');
         itemMenuProduto.setText("Produto");
-        itemMenuProduto.addActionListener();
+        itemMenuProduto.addActionListener(this::itemMenuProdutoActionPerformed);
         menuCadastro.add(itemMenuProduto);
+
+        itemMenuFuncionario.setText("Funcionario");
+        itemMenuFuncionario.addActionListener(this::itemMenuFuncionarioActionPerformed);
+        menuCadastro.add(itemMenuFuncionario);
 
         menuBar.add(menuCadastro);
 
@@ -94,14 +104,24 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         itemMenuVenda.setMnemonic('t');
         itemMenuVenda.setText("Realizar Venda");
-        itemMenuVenda.addActionListener();
+        itemMenuVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemMenuVendaMouseClicked(evt);
+            }
+        });
+        itemMenuVenda.addActionListener(this::itemMenuVendaActionPerformed);
         menuVenda.add(itemMenuVenda);
 
         menuBar.add(menuVenda);
 
         menuSair.setMnemonic('h');
         menuSair.setText("Sair");
-        menuSair.addActionListener();
+        menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSairMouseClicked(evt);
+            }
+        });
+        menuSair.addActionListener(this::menuSairActionPerformed);
         menuBar.add(menuSair);
 
         setJMenuBar(menuBar);
@@ -123,11 +143,11 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuClienteActionPerformed
-    abreClienteVIEW();
+        abreClienteVIEW();
     }//GEN-LAST:event_itemMenuClienteActionPerformed
 
     private void itemMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuProdutoActionPerformed
-    abreProdutoVIEW();        // TODO add your handling code here:
+    abreProdutoVIEW();       // TODO add your handling code here:
     }//GEN-LAST:event_itemMenuProdutoActionPerformed
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
@@ -139,8 +159,24 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_itemMenuFornecedorActionPerformed
 
     private void itemMenuVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuVendaActionPerformed
-        abreVendaView();
+        abreVendaVIEW();
     }//GEN-LAST:event_itemMenuVendaActionPerformed
+
+    private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
+        sair();
+    }//GEN-LAST:event_menuSairMouseClicked
+
+    private void itemMenuVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemMenuVendaMouseClicked
+    abreVendaVIEW();        // TODO add your handling code here:
+    }//GEN-LAST:event_itemMenuVendaMouseClicked
+
+    private void itemMenuClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemMenuClienteMouseClicked
+    abreClienteVIEW();
+    }//GEN-LAST:event_itemMenuClienteMouseClicked
+
+    private void itemMenuFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemMenuFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,6 +217,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem itemMenuCliente;
     private javax.swing.JMenuItem itemMenuFornecedor;
+    private javax.swing.JMenuItem itemMenuFuncionario;
     private javax.swing.JMenuItem itemMenuProduto;
     private javax.swing.JMenuItem itemMenuVenda;
     private javax.swing.JMenuBar menuBar;
